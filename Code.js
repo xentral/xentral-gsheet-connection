@@ -1,6 +1,6 @@
-const XENTRAL_URL = 'https://YOUR_INSTANCE.xentral.biz' // Your Xentral Instance
-const PAT = '' // Your Personal Access Token in between ''
-const ENDPOINT = '/api/analytics/query' // Query Endpoint
+let XENTRAL_URL = 'https://YOUR_INSTANCE.xentral.biz' // Your Xentral Instance
+let PAT = '' // Your Personal Access Token in between ''
+let ENDPOINT = '/api/analytics/query' // Query Endpoint
 let TEST_SQL_STATEMENT = `
     SELECT
       sales_order_id,
@@ -20,9 +20,9 @@ function QUERY_XENTRAL(sqlStr=TEST_SQL_STATEMENT){
   Logger.log("Invoked with SQL statement: %s", sqlStr)
   let payload = JSON.stringify({ query: sqlStr });
   Logger.log("Paylod: %s", payload)
-  const concatenatedEndpoint = XENTRAL_URL + ENDPOINT
+  let concatenatedEndpoint = XENTRAL_URL + ENDPOINT
   try{
-    const options = {
+    let options = {
       method: 'POST',
       payload: payload,
       headers: {
@@ -39,7 +39,7 @@ function QUERY_XENTRAL(sqlStr=TEST_SQL_STATEMENT){
     Logger.log(jsonResult);
     Logger.log(data);
 
-    return resortResponseData(data)
+    return formatApiResponse(data)
   }
   catch(err){
       Logger.log(err);
@@ -53,6 +53,6 @@ function QUERY_XENTRAL(sqlStr=TEST_SQL_STATEMENT){
  * @returns {Array} - The array inserted into the sheet
  */
 
-function resortResponseData(data) {
+function formatApiResponse(data) {
   return [data.header, ...data.rows];
 }
