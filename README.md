@@ -87,6 +87,8 @@ If you have a report saved in Xentral (with an ID), use:
 
 > This pulls the result of a saved report with ID `123`.
 
+Note: If you open the UI of Xentral of the report, you can find the ID in the URL `...&activeReport=123`
+
 <!---
 ## 🛟 Troubleshooting
 
