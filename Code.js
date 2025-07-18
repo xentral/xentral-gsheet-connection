@@ -1,5 +1,8 @@
 const XENTRAL_URL = 'https://{your_instance}.xentral.biz' // Your Xentral Instance
 const PAT = '' // Your Personal Access Token in between ''
+
+// This is a template file. Replace {your_instance} with your actual Xentral
+// instance URL and set the PAT. The following code does not need to be modified.
 const ENDPOINT = '/api/analytics/query' // Query Endpoint
 const CREATE_QUERY_EXPORT_ENDPOINT = '/api/v1/analytics/query/export' //returns uuid
 const GET_QUERY_EXPORT_ENDPOINT = '/api/v1/analytics/query/export/' //+{uuid} //call this until status = success or failed
