@@ -1,10 +1,10 @@
 # 🤝 Xentral Google Sheets Integration
-Use this script to **query data from your Xentral system directly in Google Sheets** – without needing to do anything manually.
+Use this script to **query data from your Xentral system directly in Google Sheets**.
 
 You can use two simple functions in your sheet:
 
 - `=XENTRAL_QUERY("SELECT * FROM ...")`  
-- `=XENTRAL_REPORT(your-report-id)`
+- `=XENTRAL_REPORT(report-id)`
 
 ---
 
@@ -73,10 +73,10 @@ Now you're ready to use Xentral data like a pro!
 Use the `XENTRAL_QUERY` function:
 
 ```excel
-=XENTRAL_QUERY("SELECT name, total FROM orders WHERE total > 1000")
+=XENTRAL_QUERY("SELECT sales_order_id, date, net_revenue FROM sales_orders LIMIT 1000")
 ```
 
-> Returns the status per sales order ID
+> Returns the net revenue per sales_order_id and date
 
 ### 📑 Use a Saved Report
 If you have a report saved in Xentral (with an ID), use:
@@ -87,8 +87,7 @@ If you have a report saved in Xentral (with an ID), use:
 
 > This pulls the result of a saved report with ID `123`.
 
----
-
+<!---
 ## 🛟 Troubleshooting
 
 - **"ReferenceError: XENTRAL_URL is not defined"**  
@@ -101,3 +100,4 @@ If you have a report saved in Xentral (with an ID), use:
   → Double-check your SQL/report ID and PAT, and confirm the script has the correct instance URL.
 
 ---
+-->
