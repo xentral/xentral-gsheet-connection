@@ -84,8 +84,43 @@ function downloadCSV(url) {
     const response = UrlFetchApp.fetch(url);
     const csvContent = response.getContentText();
     const rows = Utilities.parseCsv(csvContent);
+
     Logger.log("CSV Rows: %s", rows.length);
-    return rows;
+    if (rows.length === 0) return [];
+
+    const headers = rows[0];
+    const dataRows = rows.slice(1);
+
+    // Detect numeric columns (all values must be numeric or empty)
+    const numCols = headers.length;
+    const numericColumnFlags = Array(numCols).fill(true);
+
+    for (let row of dataRows) {
+      for (let i = 0; i < numCols; i++) {
+        const cell = row[i] ? row[i].trim() : '';
+        if (cell === '') continue; // allow empty
+        if (isNaN(cell)) {
+          numericColumnFlags[i] = false;
+        }
+      }
+    }
+
+    Logger.log("Detected numeric columns: %s", numericColumnFlags);
+
+    // Coerce values only in numeric columns
+    const cleanedRows = dataRows.map(row =>
+      row.map((cell, i) => {
+        const value = cell ? cell.trim() : '';
+        if (numericColumnFlags[i] && value !== '') {
+          const num = parseFloat(value);
+          return isNaN(num) ? value : num;
+        }
+        return value;
+      })
+    );
+
+    return [headers, ...cleanedRows];
+
   } catch (e) {
     Logger.log("Error downloading CSV: %s", e.message);
     throw e;
