@@ -159,8 +159,6 @@ function XENTRAL_QUERY(sqlStr = TEST_SQL_STATEMENT) {
 
     const downloadUrl = pollForExportUrl(uuid, GET_QUERY_EXPORT_ENDPOINT);
     let data = downloadCSV(downloadUrl)
-    Logger.log(data)
-    Logger.log(downloadUrl)
     return data;
   } catch (err) {
     Logger.log("XENTRAL_QUERY error: %s", err.message);
