@@ -91,7 +91,7 @@ function downloadCSV(url) {
     const headers = rows[0];
     const dataRows = rows.slice(1);
 
-    // Step 1: Detect numeric columns (all values must be numeric or empty)
+    // Detect numeric columns (all values must be numeric or empty)
     const numCols = headers.length;
     const numericColumnFlags = Array(numCols).fill(true);
 
@@ -105,9 +105,7 @@ function downloadCSV(url) {
       }
     }
 
-    Logger.log("Detected numeric columns: %s", numericColumnFlags);
-
-    // Step 2: Coerce values only in numeric columns
+    // Transform values only in numeric columns
     const cleanedRows = dataRows.map(row =>
       row.map((cell, i) => {
         const value = cell?.trim()  ?? '';
@@ -139,7 +137,7 @@ function XENTRAL_QUERY(sqlStr = TEST_SQL_STATEMENT) {
     Logger.log("Executing SQL: %s", sqlStr);
 
     const payload = JSON.stringify({ query: sqlStr });
-    const endpoint = XENTRAL_URL + CREATE_QUERY_EXPORT_ENDPOINT;
+    const queryEndpoint = XENTRAL_URL + CREATE_QUERY_EXPORT_ENDPOINT;
 
     const options = {
       method: 'POST',
@@ -151,7 +149,7 @@ function XENTRAL_QUERY(sqlStr = TEST_SQL_STATEMENT) {
       }
     };
 
-    const res = UrlFetchApp.fetch(endpoint, options);
+    const res = UrlFetchApp.fetch(queryEndpoint, options);
     const json = JSON.parse(res.getContentText());
     const uuid = json["data"][0]["id"];
 
@@ -176,10 +174,9 @@ function XENTRAL_REPORT(reportId = REPORT_ID) {
   try {
     Logger.log("Fetching report ID: %s", reportId);
 
-    const endpoint = XENTRAL_URL + CREATE_EXPORT_ENDPOINT + reportId + "/export";
-    const exportEndpoint = GET_QUERY_EXPORT_ENDPOINT
-    // const exportEndpoint = GET_EXPORT_ENDPOINT + reportId + "/export/";
-    const uuid = createExportTask(endpoint);
+    const queryEndpoint = XENTRAL_URL + CREATE_EXPORT_ENDPOINT + reportId + "/export";
+    const exportEndpoint = GET_EXPORT_ENDPOINT + reportId + "/export/";
+    const uuid = createExportTask(queryEndpoint);
 
     const downloadUrl = pollForExportUrl(uuid, exportEndpoint);
     return downloadCSV(downloadUrl);
