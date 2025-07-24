@@ -42,7 +42,7 @@ function createExportTask(endpoint) {
  * Polls the export task until it's ready and returns the download URL
  */
 function pollForExportUrl(uuid, endpoint) {
-  const maxRetries = 20;
+  const maxRetries = 30;
   const delayMs = 2000;
   const exportEndpoint = XENTRAL_URL + endpoint + uuid;
   //const exportEndpoint = XENTRAL_URL + GET_QUERY_EXPORT_ENDPOINT + uuid;
