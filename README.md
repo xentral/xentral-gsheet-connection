@@ -1,4 +1,4 @@
-# 🤝 Xentral Google Sheets Integration
+# 🤝 Xentral Google Sheets Connection
 Use this script to **query data from your Xentral system directly in Google Sheets**.
 
 You can use two simple functions in your sheet:
