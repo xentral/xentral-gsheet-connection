@@ -8,14 +8,14 @@ const CREATE_QUERY_EXPORT_ENDPOINT = '/api/v1/analytics/query/export' //returns 
 const GET_QUERY_EXPORT_ENDPOINT = '/api/v1/analytics/query/export/' //+{uuid} //call this until status = success or failed
 const CREATE_EXPORT_ENDPOINT = '/api/v1/analytics/report/' //{id}/export
 const GET_EXPORT_ENDPOINT = '/api/v1/analytics/report/' // {id}/export/{uuid}
-const REPORT_ID = '70825'
+const REPORT_ID = 933
 let TEST_SQL_STATEMENT = `
     SELECT
       sales_order_id,
       net_revenue
     FROM sales_orders
     LEFT JOIN sales_order_items USING(sales_order_id)
-    LIMIT 500;
+    LIMIT 5;
 `; // Only for testing
 
 /**
@@ -91,13 +91,13 @@ function downloadCSV(url) {
     const headers = rows[0];
     const dataRows = rows.slice(1);
 
-    // Detect numeric columns (all values must be numeric or empty)
+    // Step 1: Detect numeric columns (all values must be numeric or empty)
     const numCols = headers.length;
     const numericColumnFlags = Array(numCols).fill(true);
 
     for (let row of dataRows) {
       for (let i = 0; i < numCols; i++) {
-        const cell = row[i] ? row[i].trim() : '';
+        const cell = row[i]?.trim() ?? '';
         if (cell === '') continue; // allow empty
         if (isNaN(cell)) {
           numericColumnFlags[i] = false;
@@ -107,10 +107,10 @@ function downloadCSV(url) {
 
     Logger.log("Detected numeric columns: %s", numericColumnFlags);
 
-    // Coerce values only in numeric columns
+    // Step 2: Coerce values only in numeric columns
     const cleanedRows = dataRows.map(row =>
       row.map((cell, i) => {
-        const value = cell ? cell.trim() : '';
+        const value = cell?.trim()  ?? '';
         if (numericColumnFlags[i] && value !== '') {
           const num = parseFloat(value);
           return isNaN(num) ? value : num;
@@ -126,6 +126,7 @@ function downloadCSV(url) {
     throw e;
   }
 }
+
 
 /**
 * Imports CSV data to your spreadsheet Ex: XENTRAL_QUERY ("SQL statement")
@@ -157,7 +158,10 @@ function XENTRAL_QUERY(sqlStr = TEST_SQL_STATEMENT) {
     Logger.log("Query export UUID: %s", uuid);
 
     const downloadUrl = pollForExportUrl(uuid, GET_QUERY_EXPORT_ENDPOINT);
-    return downloadCSV(downloadUrl);
+    let data = downloadCSV(downloadUrl)
+    Logger.log(data)
+    Logger.log(downloadUrl)
+    return data;
   } catch (err) {
     Logger.log("XENTRAL_QUERY error: %s", err.message);
     return [["Error"], [err.message]];
@@ -176,7 +180,7 @@ function XENTRAL_REPORT(reportId = REPORT_ID) {
 
     const endpoint = XENTRAL_URL + CREATE_EXPORT_ENDPOINT + reportId + "/export";
     const exportEndpoint = GET_QUERY_EXPORT_ENDPOINT
-    //const exportEndpoint = GET_EXPORT_ENDPOINT + reportId + "/export/";
+    // const exportEndpoint = GET_EXPORT_ENDPOINT + reportId + "/export/";
     const uuid = createExportTask(endpoint);
 
     const downloadUrl = pollForExportUrl(uuid, exportEndpoint);
