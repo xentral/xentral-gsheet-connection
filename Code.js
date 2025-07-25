@@ -8,14 +8,14 @@ const CREATE_QUERY_EXPORT_ENDPOINT = '/api/v1/analytics/query/export' //returns 
 const GET_QUERY_EXPORT_ENDPOINT = '/api/v1/analytics/query/export/' //+{uuid} //call this until status = success or failed
 const CREATE_EXPORT_ENDPOINT = '/api/v1/analytics/report/' //{id}/export
 const GET_EXPORT_ENDPOINT = '/api/v1/analytics/report/' // {id}/export/{uuid}
-const REPORT_ID = '70825'
+const REPORT_ID = 933
 let TEST_SQL_STATEMENT = `
     SELECT
       sales_order_id,
       net_revenue
     FROM sales_orders
     LEFT JOIN sales_order_items USING(sales_order_id)
-    LIMIT 500;
+    LIMIT 5;
 `; // Only for testing
 
 /**
@@ -42,7 +42,7 @@ function createExportTask(endpoint) {
  * Polls the export task until it's ready and returns the download URL
  */
 function pollForExportUrl(uuid, endpoint) {
-  const maxRetries = 20;
+  const maxRetries = 30;
   const delayMs = 2000;
   const exportEndpoint = XENTRAL_URL + endpoint + uuid;
   //const exportEndpoint = XENTRAL_URL + GET_QUERY_EXPORT_ENDPOINT + uuid;
@@ -84,13 +84,47 @@ function downloadCSV(url) {
     const response = UrlFetchApp.fetch(url);
     const csvContent = response.getContentText();
     const rows = Utilities.parseCsv(csvContent);
+
     Logger.log("CSV Rows: %s", rows.length);
-    return rows;
+    if (rows.length === 0) return [];
+
+    const headers = rows[0];
+    const dataRows = rows.slice(1);
+
+    // Detect numeric columns (all values must be numeric or empty)
+    const numCols = headers.length;
+    const numericColumnFlags = Array(numCols).fill(true);
+
+    for (let row of dataRows) {
+      for (let i = 0; i < numCols; i++) {
+        const cell = row[i]?.trim() ?? '';
+        if (cell === '') continue; // allow empty
+        if (isNaN(cell)) {
+          numericColumnFlags[i] = false;
+        }
+      }
+    }
+
+    // Transform values only in numeric columns
+    const cleanedRows = dataRows.map(row =>
+      row.map((cell, i) => {
+        const value = cell?.trim()  ?? '';
+        if (numericColumnFlags[i] && value !== '') {
+          const num = parseFloat(value);
+          return isNaN(num) ? value : num;
+        }
+        return value;
+      })
+    );
+
+    return [headers, ...cleanedRows];
+
   } catch (e) {
     Logger.log("Error downloading CSV: %s", e.message);
     throw e;
   }
 }
+
 
 /**
 * Imports CSV data to your spreadsheet Ex: XENTRAL_QUERY ("SQL statement")
@@ -103,7 +137,7 @@ function XENTRAL_QUERY(sqlStr = TEST_SQL_STATEMENT) {
     Logger.log("Executing SQL: %s", sqlStr);
 
     const payload = JSON.stringify({ query: sqlStr });
-    const endpoint = XENTRAL_URL + CREATE_QUERY_EXPORT_ENDPOINT;
+    const queryEndpoint = XENTRAL_URL + CREATE_QUERY_EXPORT_ENDPOINT;
 
     const options = {
       method: 'POST',
@@ -115,7 +149,7 @@ function XENTRAL_QUERY(sqlStr = TEST_SQL_STATEMENT) {
       }
     };
 
-    const res = UrlFetchApp.fetch(endpoint, options);
+    const res = UrlFetchApp.fetch(queryEndpoint, options);
     const json = JSON.parse(res.getContentText());
     const uuid = json["data"][0]["id"];
 
@@ -139,10 +173,9 @@ function XENTRAL_REPORT(reportId = REPORT_ID) {
   try {
     Logger.log("Fetching report ID: %s", reportId);
 
-    const endpoint = XENTRAL_URL + CREATE_EXPORT_ENDPOINT + reportId + "/export";
-    const exportEndpoint = GET_QUERY_EXPORT_ENDPOINT
-    //const exportEndpoint = GET_EXPORT_ENDPOINT + reportId + "/export/";
-    const uuid = createExportTask(endpoint);
+    const queryEndpoint = XENTRAL_URL + CREATE_EXPORT_ENDPOINT + reportId + "/export";
+    const exportEndpoint = GET_EXPORT_ENDPOINT + reportId + "/export/";
+    const uuid = createExportTask(queryEndpoint);
 
     const downloadUrl = pollForExportUrl(uuid, exportEndpoint);
     return downloadCSV(downloadUrl);
