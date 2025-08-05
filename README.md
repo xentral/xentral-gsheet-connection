@@ -40,7 +40,7 @@ Head over to our GitHub and copy the code from the file:
 Paste the entire script into the Apps Script editor.
 
 ### 4. Add Your Xentral Details
-At the **top of the script**, simply adjust these two lines with your Xentral instance and the Personal Access Token (PAT).:
+At the **top of the script**, simply adjust these two lines with your Xentral instance and the Personal Access Token (PAT):
 
 ```javascript
 const XENTRAL_URL = 'https://{your_instance}.xentral.biz'; // Your Xentral instance URL
@@ -60,8 +60,9 @@ Click the 💾 **Save** icon (or press `Ctrl + S`).
 You can name the project something like `Xentral Integration`.
 
 ### 6. Authorize the Script  
-- Run any function (e.g., click the ▶️ play button next to `XENTRAL_QUERY`)
-- Google will ask for authorization — approve it (you may need to click "Advanced" → "Go to project name").
+- Select the `XENTRAL_QUERY` function from the dropdown![First Run](images/first_run.png)
+- Hit the ▶️ Run/Ausführen button to execute it
+- Google will ask for authorization - approve it (you may need to click "Advanced" → "Go to project name").
 
 ---
 
@@ -89,8 +90,11 @@ If you have a report saved in Xentral (with an ID), use:
 
 Note: If you open the UI of Xentral of the report, you can find the ID in the URL `...&activeReport=123`
 
-<!---
+
 ## 🛟 Troubleshooting
+
+- **Incorrect values in GSheet for XENTRAL_REPORT?**  
+  → The export type needs to be set to CSV and delimiter `,` so that GSheet interprets the data correctly.
 
 - **"ReferenceError: XENTRAL_URL is not defined"**  
   → Make sure you added `const XENTRAL_URL = ...` at the top of the script.
@@ -102,4 +106,3 @@ Note: If you open the UI of Xentral of the report, you can find the ID in the UR
   → Double-check your SQL/report ID and PAT, and confirm the script has the correct instance URL.
 
 ---
--->
