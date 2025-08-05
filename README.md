@@ -43,8 +43,8 @@ Paste the entire script into the Apps Script editor.
 At the **top of the script**, simply adjust these two lines with your Xentral instance and the Personal Access Token (PAT):
 
 ```javascript
-const XENTRAL_URL = 'https://{your_instance}.xentral.biz'; // Your Xentral instance URL
-const PAT = ''; // Your Personal Access Token (between the quotes)
+const XENTRAL_URL = 'https://{your_instance}.xentral.biz' // Your Xentral Instance
+const PAT = '' // Your Personal Access Token in between ''
 ```
 
 For example:
@@ -53,7 +53,7 @@ const XENTRAL_URL = 'https://abc.xentral.biz';
 const PAT = 'abc123yourPATtokenhere';
 ```
 
-💡 _Don't have a PAT yet? See the "Prerequisites" section above to generate one._
+💡 _Don't have a PAT yet? See the "Prerequisites" section above to get one._
 
 ### 5. Save the Script  
 Click the 💾 **Save** icon (or press `Ctrl + S`).  
@@ -88,13 +88,14 @@ If you have a report saved in Xentral (with an ID), use:
 
 > This pulls the result of a saved report with ID `123`.
 
-Note: If you open the UI of Xentral of the report, you can find the ID in the URL `...&activeReport=123`
+📌 **Note:** If you open the report in Xentral, you can find the ID in the URL `...&activeReport=123` <br>
+⚠️ **Warning:** The export type needs to be set to `CSV` or `text` and the delimiter to `,` so that GSheet interprets the data correctly.
 
 
 ## 🛟 Troubleshooting
 
 - **Incorrect values in GSheet for XENTRAL_REPORT?**  
-  → The export type needs to be set to CSV and delimiter `,` so that GSheet interprets the data correctly.
+  → The export type needs to be set to `CSV` or `text` and the delimiter to `,` so that GSheet interprets the data correctly.
 
 - **"ReferenceError: XENTRAL_URL is not defined"**  
   → Make sure you added `const XENTRAL_URL = ...` at the top of the script.
