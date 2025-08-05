@@ -74,7 +74,7 @@ Now you're ready to use Xentral data like a pro!
 Use the `XENTRAL_QUERY` function:
 
 ```excel
-=XENTRAL_QUERY("SELECT sales_order_id, date, net_revenue FROM sales_orders LIMIT 1000")
+=XENTRAL_QUERY("SELECT sales_order_id, date, net_revenue FROM sales_orders LIMIT 10")
 ```
 
 > Returns the net revenue per sales_order_id and date
