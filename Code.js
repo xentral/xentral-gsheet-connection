@@ -16,7 +16,7 @@ const TEST_SQL_STATEMENT = `
       net_revenue
     FROM sales_orders
     LEFT JOIN sales_order_items USING(sales_order_id)
-    LIMIT 500;
+    LIMIT 5;
 ` // Only for testing
 
 /**
