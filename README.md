@@ -105,4 +105,3 @@ If you have a report saved in Xentral (with an ID), use:
 - **Nothing shows up in the sheet?**  
   → Double-check your SQL/report ID and PAT, and confirm the script has the correct instance URL.
 
----
