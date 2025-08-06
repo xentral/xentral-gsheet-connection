@@ -60,8 +60,7 @@ Click the 💾 **Save** icon (or press `Ctrl + S`).
 You can name the project something like `Xentral Integration`.
 
 ### 6. Authorize the Script  
-- Select the `XENTRAL_QUERY` function from the dropdown![First Run](images/first_run.png)
-- Hit the ▶️ Run/Ausführen button to execute it
+- Hit the ▶️ Run/Ausführen button to execute a test query
 - Google will ask for authorization - approve it (you may need to click "Advanced" → "Go to project name").
 
 ---
