@@ -28,13 +28,13 @@ Create a new or open an existing Google Sheet where you want to use Xentral data
 
 ### 2. Open the Script Editor  
 In your sheet, click:
-
+![open script](images/apps_script_default.png)
 `Extensions` → `Apps Script`
 
 This will open a new tab with the Google Apps Script editor.
 
 ### 3. Copy the Script Code  
-Head over to our GitHub and copy the code from the file:  
+Head over to our GitHub and copy the code from the file: 
 🔗 [Code.js](https://github.com/xentral/xentral-gsheet-connection/blob/master/Code.js)  
 
 Paste the entire script into the Apps Script editor.
