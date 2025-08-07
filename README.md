@@ -30,6 +30,7 @@ Create a new or open an existing Google Sheet where you want to use Xentral data
 In your sheet, click:
 
 `Extensions` → `Apps Script`
+
 ![open script](images/apps_script.png)
 This will open a new tab with the Google Apps Script editor.
 
@@ -38,9 +39,9 @@ Head over to our GitHub and copy the code from the file:
 🔗 [Code.js](https://github.com/xentral/xentral-gsheet-connection/blob/master/Code.js)  
 
 Remove the existing code:
-![Remove Code](images/apps_script_default.png)
-It must be completly empty:
-![Empty Code](images/empty_apps_script.png)
+![remove code](images/apps_script_default.png)
+It must be completely empty:
+![empty code](images/empty_apps_script.png)
 
 Now paste the entire script into the Apps Script editor.
 ![filled with code](images/apps_script_filled.png)
@@ -66,10 +67,6 @@ Click the 💾 **Save** icon (or press `Ctrl + S`).
 You can name the project something like `Xentral Integration`.
 
 ### 6. Authorize the Script  
-You need to authorize the script so you are able to use the functions within GSHeet.
-
-To do so, you need to change the setting for a test run on the top right to "XENTRAL_QUERY":
-![authorization run](images/first_run.png)
 
 - Hit the ▶️ Run/Ausführen button to execute a test query
 - Google will ask for authorization - approve it (you may need to click "Advanced" → "Go to project name").
