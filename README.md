@@ -30,8 +30,9 @@ Create a new or open an existing Google Sheet where you want to use Xentral data
 In your sheet, click:
 
 `Extensions` → `Apps Script`
-
+<br>
 ![open script](images/apps_script.png)
+<br>
 This will open a new tab with the Google Apps Script editor.
 
 ### 3. Copy the Script Code  
