@@ -31,7 +31,11 @@ In your sheet, click:
 
 `Extensions` → `Apps Script`
 <br>
-![open script](images/apps_script.png)
+
+
+<img src="images/apps_script.png" alt="open script" width="300" style="border-radius:10px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+
+---
 <br>
 This will open a new tab with the Google Apps Script editor.
 
@@ -40,13 +44,25 @@ Head over to our GitHub and copy the code from the file:
 🔗 [Code.js](https://github.com/xentral/xentral-gsheet-connection/blob/master/Code.js)  
 
 Remove the existing code:
-![remove code](images/apps_script_default.png)
+
+
+<img src="images/apps_script_default.png" alt="remove code" width="300" style="border-radius:10px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+
+
+----
 It must be completely empty:
-![empty code](images/empty_apps_script.png)
 
+<img src="images/empty_apps_script.png" alt="empty code" width="300" style="border-radius:10px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+
+
+----
 Now paste the entire script into the Apps Script editor.
-![filled with code](images/apps_script_filled.png)
+<br>
 
+<img src="images/apps_script_filled.png" alt="filled with code" width="300" style="border-radius:10px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+
+
+----
 ### 4. Add Your Xentral Details
 At the **top of the script**, simply adjust these two lines with your Xentral instance and the Personal Access Token (PAT):
 
@@ -84,22 +100,31 @@ Use the `XENTRAL_QUERY` function:
 ```excel
 =XENTRAL_QUERY("SELECT sales_order_id, date, net_revenue FROM sales_orders LIMIT 10")
 ```
-![function usage](images/select_function.png)
+
+<img src="images/select_function.png" alt="function usage" width="300" style="border-radius:10px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+
+
 
 > Returns the net revenue per sales_order_id and date
 
+---
 ### 📑 Use a Saved Report
 If you have a report saved in Xentral (with an ID), use:
 
 ```excel
 =XENTRAL_REPORT(71088)
 ```
-![used report](images/import_function.png)
 
+<p align="center">
+  <img src="images/import_function.png" alt="used report" width="300" style="border-radius:10px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+</p>
+
+---
 > This pulls the result of a saved report with ID `71088`.
+---
+<img src="images/result.png" alt="result" width="300" style="border-radius:10px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
 
-![result](images/result.png)
-
+---
 📌 **Note:** If you open the report in Xentral, you can find the ID in the URL `...&activeReport=71088` <br>
 ⚠️ **Warning:** The export type needs to be set to `CSV` or `text` and the delimiter to `,` so that GSheet interprets the data correctly.
 
