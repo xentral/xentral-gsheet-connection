@@ -33,7 +33,7 @@ In your sheet, click:
 <br>
 
 
-<img src="images/apps_script.png" alt="open script" width="300" style="border-radius:10px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+<img src="images/apps_script.png" alt="open script" width="500" style="border-radius:10px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
 
 ---
 <br>
@@ -46,20 +46,20 @@ Head over to our GitHub and copy the code from the file:
 Remove the existing code:
 
 
-<img src="images/apps_script_default.png" alt="remove code" width="300" style="border-radius:10px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+<img src="images/apps_script_default.png" alt="remove code" width="500" style="border-radius:10px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
 
 
 ----
 It must be completely empty:
 
-<img src="images/empty_apps_script.png" alt="empty code" width="300" style="border-radius:10px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+<img src="images/empty_apps_script.png" alt="empty code" width="500" style="border-radius:10px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
 
 
 ----
 Now paste the entire script into the Apps Script editor.
 <br>
 
-<img src="images/apps_script_filled.png" alt="filled with code" width="300" style="border-radius:10px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+<img src="images/apps_script_filled.png" alt="filled with code" width="500" style="border-radius:10px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
 
 
 ----
@@ -101,7 +101,7 @@ Use the `XENTRAL_QUERY` function:
 =XENTRAL_QUERY("SELECT sales_order_id, date, net_revenue FROM sales_orders LIMIT 10")
 ```
 
-<img src="images/select_function.png" alt="function usage" width="300" style="border-radius:10px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+<img src="images/select_function.png" alt="function usage" width="500" style="border-radius:10px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
 
 
 
@@ -116,13 +116,14 @@ If you have a report saved in Xentral (with an ID), use:
 ```
 
 
-  <img src="images/import_function.png" alt="used report" width="300" style="border-radius:10px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+  <img src="images/import_function.png" alt="used report" width="500" style="border-radius:10px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
 </p>
 
 ---
 > This pulls the result of a saved report with ID `71088`.
 ---
-<img src="images/result.png" alt="result" width="300" style="border-radius:10px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+
+<img src="images/result.png" alt="result" width="500" style="border-radius:10px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
 
 ---
 📌 **Note:** If you open the report in Xentral, you can find the ID in the URL `...&activeReport=71088` <br>
