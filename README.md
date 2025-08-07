@@ -115,7 +115,7 @@ If you have a report saved in Xentral (with an ID), use:
 =XENTRAL_REPORT(71088)
 ```
 
-<p align="center">
+
   <img src="images/import_function.png" alt="used report" width="300" style="border-radius:10px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
 </p>
 
