@@ -123,7 +123,7 @@ If you have a report saved in Xentral (with an ID), use:
 > This pulls the result of a saved report with ID `71088`.
 ---
 
-<img src="images/result.png" alt="result" width="500" style="border-radius:10px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+<img src="images/result.png" alt="result" width="700" style="border-radius:10px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
 
 ---
 📌 **Note:** If you open the report in Xentral, you can find the ID in the URL `...&activeReport=71088` <br>
