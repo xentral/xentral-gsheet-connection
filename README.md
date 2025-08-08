@@ -114,7 +114,7 @@ Use the `XENTRAL_QUERY` function:
 If you have a report saved in Xentral (with an ID), use:
 
 ```excel
-=XENTRAL_REPORT(71088)
+=XENTRAL_REPORT(68453)
 ```
 
 
@@ -122,7 +122,7 @@ If you have a report saved in Xentral (with an ID), use:
 </p>
 
 ---
-> This pulls the result of a saved report with ID `71088`.
+> This pulls the result of a saved report with ID `68453`.
 ---
 
 <img src="images/result.png" alt="result" width="700" style="border-radius:10px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
