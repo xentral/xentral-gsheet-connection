@@ -30,15 +30,39 @@ Create a new or open an existing Google Sheet where you want to use Xentral data
 In your sheet, click:
 
 `Extensions` → `Apps Script`
+<br>
 
+
+<img src="images/apps_script.png" alt="open script" width="500" style="border-radius:10px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+
+---
+<br>
 This will open a new tab with the Google Apps Script editor.
 
 ### 3. Copy the Script Code  
-Head over to our GitHub and copy the code from the file:  
+Head over to our GitHub and copy the code from the file: 
 🔗 [Code.js](https://github.com/xentral/xentral-gsheet-connection/blob/master/Code.js)  
 
-Paste the entire script into the Apps Script editor.
+Remove the existing code:
 
+
+<img src="images/apps_script_default.png" alt="remove code" width="500" style="border-radius:10px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+
+
+----
+It must be completely empty:
+
+<img src="images/empty_apps_script.png" alt="empty code" width="500" style="border-radius:10px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+
+
+----
+Now paste the entire script into the Apps Script editor.
+<br>
+
+<img src="images/apps_script_filled.png" alt="filled with code" width="500" style="border-radius:10px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+
+
+----
 ### 4. Add Your Xentral Details
 At the **top of the script**, simply adjust these two lines with your Xentral instance and the Personal Access Token (PAT):
 
@@ -60,6 +84,7 @@ Click the 💾 **Save** icon (or press `Ctrl + S`).
 You can name the project something like `Xentral Integration`.
 
 ### 6. Authorize the Script  
+
 - Hit the ▶️ Run/Ausführen button to execute a test query
 - Google will ask for authorization - approve it (you may need to click "Advanced" → "Go to project name").
 
@@ -72,22 +97,38 @@ Now you're ready to use Xentral data like a pro!
 ### 🔍 Query with SQL
 Use the `XENTRAL_QUERY` function:
 
+
+
+<img src="images/select_function.png" alt="function usage" width="500" style="border-radius:10px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+
+<br>
+  
 ```excel
-=XENTRAL_QUERY("SELECT sales_order_id, date, net_revenue FROM sales_orders LIMIT 10")
+=XENTRAL_QUERY("SELECT sales_order_id, date, net_revenue FROM sales_orders LIMIT 5")
 ```
 
 > Returns the net revenue per sales_order_id and date
 
+---
 ### 📑 Use a Saved Report
 If you have a report saved in Xentral (with an ID), use:
 
 ```excel
-=XENTRAL_REPORT(123)
+=XENTRAL_REPORT(68453)
 ```
 
-> This pulls the result of a saved report with ID `123`.
 
-📌 **Note:** If you open the report in Xentral, you can find the ID in the URL `...&activeReport=123` <br>
+  <img src="images/import_function.png" alt="used report" width="500" style="border-radius:10px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+</p>
+
+---
+> This pulls the result of a saved report with ID `68453`.
+---
+
+<img src="images/result.png" alt="result" width="700" style="border-radius:10px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+
+---
+📌 **Note:** If you open the report in Xentral, you can find the ID in the URL `...&activeReport=71088` <br>
 ⚠️ **Warning:** The export type needs to be set to `CSV` or `text` and the delimiter to `,` so that GSheet interprets the data correctly.
 
 
