@@ -97,13 +97,15 @@ Now you're ready to use Xentral data like a pro!
 ### 🔍 Query with SQL
 Use the `XENTRAL_QUERY` function:
 
-```excel
-=XENTRAL_QUERY("SELECT sales_order_id, date, net_revenue FROM sales_orders LIMIT 10")
-```
+
 
 <img src="images/select_function.png" alt="function usage" width="500" style="border-radius:10px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
 
-
+<br>
+  
+```excel
+=XENTRAL_QUERY("SELECT sales_order_id, date, net_revenue FROM sales_orders LIMIT 5")
+```
 
 > Returns the net revenue per sales_order_id and date
 
